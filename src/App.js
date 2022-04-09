@@ -1,4 +1,5 @@
 import {FilmLists} from './component/FilmComponents'
+import {MyNavBar,TopNavbar} from './component/NavBar'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import {Container,Col, Row} from 'react-bootstrap';
@@ -13,16 +14,23 @@ const fakeFilms=[
   {title:'Shrek',favorite:false,date:dayjs('2022-03-21'),rating:3},
   
 ];
+function alertClicked() {
+  //alert('You clicked the third ListGroupItem');
+}
 function App() {
   return (
     <Container className="App">
       <Row>
         <Col>
-        <h1>My Films</h1>
+        {/* <h1>My Films</h1> */}        
+          <TopNavbar></TopNavbar>
         </Col>
       </Row>
       <Row>
+         
+        <MyNavBar></MyNavBar>
         <FilmLists films={fakeFilms}></FilmLists>
+        
       </Row>
     </Container>
   );

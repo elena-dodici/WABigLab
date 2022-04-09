@@ -1,0 +1,25 @@
+.bar{
+    
+    background-color:rgb(223, 223, 223);
+    height: 200%;
+    position: relative;
+    top: 0px;
+}
+.txt-left{
+    text-align: left;
+}
+.lg-item{
+    top: 50px;
+    left: 10px;
+    width: 90%;
+    
+}
+.searchbox{
+    /* position: relative;
+    left: 0; */
+    color: gray;
+}
+.user{
+    text-align: right;
+    color: white;
+}
