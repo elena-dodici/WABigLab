@@ -50,7 +50,7 @@ function FilmData(props){
     stars.push(<BsStar/>);
   }
   const handleChange=()=>{
-    setChecked(true);
+    setChecked(!mychecked);
     
   }
     return(
