@@ -1,49 +1,70 @@
-import {Col, Navbar,Container, ListGroup} from 'react-bootstrap';
+import {Col, Navbar,Container, ListGroup ,Form,Nav} from 'react-bootstrap';
 import './NavBar.css';
 import { BsCollectionPlay,BsPersonCircle } from "react-icons/bs";
 function MyNavBar(props){
     return(
     <Col sm={4}>  {/*offset 指定列向右的偏移量，span指定列宽 */}
-          <ListGroup className='bar txt-left' varient="flush">
-            <ListGroup.Item className='lg-item' action href="#link1">
+          <ListGroup className='bar txt-left ' varient="flush">
+            <ListGroup.Item className='lg-item greybg' action href="#link1" active={true} >
               All
             </ListGroup.Item>
-            <ListGroup.Item className='lg-item' action href="#link2">
+            <ListGroup.Item className='lg-item greybg' action href="#link2">
               Favorites
             </ListGroup.Item>
             {/* <ListGroup.Item action onClick={alertClicked}> */}
-            <ListGroup.Item className='lg-item' action >
+            <ListGroup.Item className='lg-item greybg' action >
               Best Rated
             </ListGroup.Item>
-            <ListGroup.Item className='lg-item' action >
+            <ListGroup.Item className='lg-item greybg' action >
               Last Seen
             </ListGroup.Item>
-            <ListGroup.Item className='lg-item' action >
+            <ListGroup.Item className='lg-item greybg' action >
               Seen Last Month
             </ListGroup.Item>
           </ListGroup>
         </Col>
+      
+
     );
 }
 
 function TopNavbar(props){
     return(
-        <Navbar bg="primary" variant="dark">
+        // <Navbar bg="primary" variant="dark">
+        //   <Container>
+        //       <Col sm={3} className='txt-left'>
+        //         <Navbar.Brand href="#home">
+        //         <BsCollectionPlay  />
+        //             Film Library
+        //         </Navbar.Brand>          
+        //       </Col>
+        //       <Col sm={3}>
+        //         <input className='searchbox' type={"search"} value="search" />
+        //       </Col>
+        //       <Col sm={6} className='user'>
+        //           <BsPersonCircle  fontSize="large"/>
+        //       </Col>
+        //   </Container>
+        // </Navbar>
+        <Navbar bg="primary" variant='dark'>
           <Container>
-              <Col sm={3}>
-                <Navbar.Brand href="#home">
-                <BsCollectionPlay />
-                    Film Library
-                </Navbar.Brand>          
-              </Col>
-              <Col sm={3}>
-                <input className='searchbox' type={"search"} value="search" />
-              </Col>
-              <Col sm={6} className='user'>
-                  <BsPersonCircle  fontSize="large"/>
-              </Col>
+            <Navbar.Brand href="#home">
+              <BsCollectionPlay  />
+              Film Library
+            </Navbar.Brand>
+            <Nav className='mx-auto'>
+            <Form>
+              <Form.Control type="text" placeholder="Search" className="mr-sm-12" />
+            </Form>
+            </Nav>
+
+            <Nav className='user'>
+              <BsPersonCircle  fontSize="large"/>
+            </Nav>
+
           </Container>
         </Navbar>
+
     );
 }
 

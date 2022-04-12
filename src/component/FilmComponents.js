@@ -49,6 +49,11 @@ function FilmData(props){
   for(let i=0;i<5-props.film.rating;++i){
     stars.push(<BsStar/>);
   }
+  if(props.film.rating ===undefined){
+    for(let i=0;i<5;++i){
+      stars.push(<BsStar/>);
+    }
+  }
   const handleChange=()=>{
     setChecked(!mychecked);
     
