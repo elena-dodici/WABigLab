@@ -104,7 +104,7 @@ function App() {
         showLSFilm = {showLS} showSLMFilm = {showSLM} ></MyNavBar> */}
         <MyNavBar filterFunction ={filterFunc} ></MyNavBar>
         {/* <FilmLists films={films}></FilmLists> */}
-        <FilmLists films={filterFilms()} changeFav ={changeFav} ></FilmLists>
+        <FilmLists films={filterFilms()} changeFav ={changeFav} filterStatus ={filterStatus}></FilmLists>
         
       </Row>
     </Container>

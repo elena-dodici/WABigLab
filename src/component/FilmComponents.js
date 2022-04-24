@@ -3,11 +3,16 @@ import React from 'react';
 import {  Col, Table } from "react-bootstrap";
 import { BsStarFill,BsStar,BsPencilSquare,BsTrash } from "react-icons/bs";
 import './Film.css';
+const name_filter=["All",
+    "Favorites",
+    "BestRate",
+    'SeenLastMonth',
+    'Unseen']
 function FilmLists(props){
     return(
         <Col sm={8} >
-          <h1 className='txt-left'>Filter:All</h1>
-            <FilmTable films={props.films} changeFav={props.changeFav}></FilmTable>
+          <h1 className='txt-left'>Filter:{name_filter[props.filterStatus-1]}</h1>
+          <FilmTable films={props.films} changeFav={props.changeFav}></FilmTable>
         </Col>
     );
 }
