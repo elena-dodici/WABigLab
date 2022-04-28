@@ -22,18 +22,37 @@ const fakeFilms=[
 
 function App() {
   const [films,setFilms] = useState(fakeFilms);
-  const [filterStatus,setFilterStatus] = useState(id_filter.All)
+  const [filterStatus,setFilterStatus] = useState(id_filter.All);
 
+  const deleteFilm = (filmTitle)=>{
+    setFilms((fms)=>fms.filter(fm=>fm.title !== filmTitle));
+  }
+  const addFilm = (film)=>{
+    setFilms(oldFilms=>[...oldFilms,film]);
+  }
+  const updateFilm=(film)=>{
+    
+    setFilms(oldFilms=>{
+      return oldFilms.map(fm=>{
+        if(fm.title === film.title){
+          fm.favorite = film.favorite;
+          fm.date = film.date;
+          fm.rating = film.rating;
+        }        
+        return fm;
+      })
+    });
+    // console.log(films);
+  }
   const changeFav=(filmTitle)=>{
     //fms是原来的state
-    let tempFilm = [...films]
+    let tempFilm = [...films];
     tempFilm.forEach((x)=>{
       if(x.title === filmTitle){
         x.favorite = !x.favorite;
-        
       }
-    })
-    setFilms(tempFilm)
+    });
+    setFilms(tempFilm);
     // alert(filmTitle,"changeFav");
 
   }
@@ -42,7 +61,7 @@ function App() {
     //console.log(myfilter);
     if(filterStatus !== myfilter)
         setFilterStatus(myfilter);
-  }
+  };
 
 //????????? 为什么被调用了两次？？？？  react的问题
   const filterFilms=()=>{ 
@@ -104,7 +123,7 @@ function App() {
         showLSFilm = {showLS} showSLMFilm = {showSLM} ></MyNavBar> */}
         <MyNavBar filterFunction ={filterFunc} ></MyNavBar>
         {/* <FilmLists films={films}></FilmLists> */}
-        <FilmLists films={filterFilms()} changeFav ={changeFav} filterStatus ={filterStatus}></FilmLists>
+        <FilmLists films={filterFilms()} deleteFilm={deleteFilm} addFilm={addFilm} editFilm={updateFilm} changeFav ={changeFav} filterStatus ={filterStatus}></FilmLists>
         
       </Row>
     </Container>
