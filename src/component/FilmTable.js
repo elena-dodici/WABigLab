@@ -67,7 +67,13 @@ function FilmData(props){
   return(
     <>
     {/* 必须有个single root  */}
-        <td className='column-left'><BsPencilSquare/><BsTrash/>{props.film.title}</td>
+        <td className='column-left' >
+          <span style={{fontSize: 25}}>
+            <BsPencilSquare /> &nbsp;
+            <BsTrash/> &nbsp;
+          </span>
+          {props.film.title}
+        </td>
         {/* <td>{String(props.film.favorite)}</td> */}
         {/* <td><input  name='favorite' type={"checkbox"} />favorite</td> */}
         <td>

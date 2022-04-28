@@ -91,7 +91,7 @@ function TopNavbar(props){
         <Navbar bg="primary" variant='dark'>
           <Container>
             <Navbar.Brand href="#home">
-              <BsCollectionPlay  />
+              <BsCollectionPlay  /> &nbsp;
               Film Library
             </Navbar.Brand>
             <Nav className='mx-auto'>

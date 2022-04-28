@@ -1,4 +1,4 @@
-import {FilmLists} from './component/FilmComponents'
+import {FilmLists} from './component/FilmTable'
 import {MyNavBar,TopNavbar} from './component/NavBar'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
