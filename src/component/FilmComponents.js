@@ -32,6 +32,7 @@ function FilmTable(props) {
              {/* films = {xxxx} 前面的films是属性下一个调用的props科通过 '.films'获得，props.films返回的是{xxx}的值 */}
           {
             props.films.map((f) => <FilmRow film={f} key={f.title} changeFav ={props.changeFav} />)
+            //在这里filter！
           }
         </tbody>
       </Table>

@@ -16,9 +16,9 @@ const fakeFilms=[
   {title:'Shrek',favorite:false,date:dayjs('2022-03-21'),rating:3},
   
 ];
-function alertClicked() {
-  //alert('You clicked the third ListGroupItem');
-}
+// function alertClicked() {
+//   //alert('You clicked the third ListGroupItem');
+// }
 
 function App() {
   const [films,setFilms] = useState(fakeFilms);
@@ -44,7 +44,7 @@ function App() {
         setFilterStatus(myfilter);
   }
 
-//????????? 为什么被调用了两次？？？？
+//????????? 为什么被调用了两次？？？？  react的问题
   const filterFilms=()=>{ 
     let myfilms = [];
     // alert(1);
