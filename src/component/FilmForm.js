@@ -1,6 +1,7 @@
-import {Button, Form,Row,Col} from 'react-bootstrap';
+import {Button, Form,Row,Col, FloatingLabel} from 'react-bootstrap';
 import { useState } from 'react';
 import dayjs from 'dayjs';
+import { BsStarFill,BsStar } from "react-icons/bs";
 
 function FilmForm(props){
     
@@ -13,7 +14,7 @@ function FilmForm(props){
     const handleSubmit=(event)=>{
         event.preventDefault();
         let film={}
-        if(date===undefined){
+        if(date===undefined || date===""){
             film = {title:title,favorite:fav,rating:rating}; 
         }else{
             film = {title:title,favorite:fav,date:dayjs(date),rating:rating};
@@ -21,26 +22,36 @@ function FilmForm(props){
         
         if(props.film === undefined)
             props.addFilm(film);
-        else
+        else{
+            console.log(film);
             props.editFilm(film);
+        }
     }
+
+    
     return(
         <Form onSubmit={handleSubmit}>
             <Row className="mb-3 align-items-center" >
                 <Form.Group as={Col} >
                     {/* 要加个验证！不能添加重复的title，并且edit的时候不能修改这个位置！ */}
-                    <Form.Label column  >Film Title</Form.Label>
+                    <FloatingLabel  label="Film Title">
                     <Form.Control type="text" required={true} value={title} placeholder="Film Title" onChange={event => setTitle(event.target.value)}/>
+                    </FloatingLabel>
                 </Form.Group>
                 <Form.Group as={Col}>
-                    <Form.Label column >Date</Form.Label>
+                    <FloatingLabel  label="Date">
                     {/* <Form.Control type="date"   value={()=>{if(date==="") return date; else return date.format('YYYY-MM-DD');}} onChange={event => setDate(event.target.value)}/> */}
-                    <Form.Control type="date"   value={date} onChange={event => setDate(event.target.value)}/>
+                        <Form.Control type="date"   value={date} onChange={event => setDate(event.target.value)}/>
+                    </FloatingLabel>
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                    <Form.Label column>Rating</Form.Label>
-                    <Form.Control type="number" min={0} max={5} value={rating} onChange={event => setRating(event.target.value)}/>
+                    <Form.Label >Rating</Form.Label>
+                    {/* <Form.Control type="number" min={0} max={5} value={rating} onChange={event => setRating(event.target.value)}/> */}
+                    {/* <Form.Control  min={0} max={5} value={createStars()} onChange={event => setRating(event.target.value)}/> */}
+                    {/* <BsStar></BsStar>????????????????????????????????????????????????????? */}
+                    <ShowStars film={props.film} setRating={setRating}/>
+                    
                 </Form.Group>
                 <Form.Group className='mb-3' as={Col}>
                     <Col sm={3}>
@@ -54,5 +65,35 @@ function FilmForm(props){
             </Form.Group>
         </Form>
     )
+}
+function ShowStars(props){
+    let stars= [];
+    const clickHandler=(id)=>{
+        props.setRating(id+1);
+        stars.map((s,idx)=>  (idx<=id)?
+            <Button key={idx+'f'} id={idx} onClick={()=>{clickHandler(idx)}}><BsStarFill/></Button>:
+            <Button key={idx+'b'} id={idx} onClick={()=>{clickHandler(idx)}}><BsStar/></Button> 
+        
+        );
+        for(let i of stars){
+            console.log(i.props.children.type);
+        }
+        
+        
+    }
+    if(props.film.rating ===undefined){
+        for(let i=0;i<5;++i){
+            stars.push(<Button key={i} id={i} onClick={()=>{clickHandler(i)}}><BsStar /></Button>);
+        }
+    }else{
+        for(let i=0;i<props.film.rating;++i){
+            stars.push(<Button key={i+'f'} id={i} onClick={()=>{clickHandler(i)}}><BsStarFill/></Button>);
+        }
+        for(let i=props.film.rating;i<5;++i){
+            stars.push(<Button key={i+'b'} id={i} onClick={()=>{clickHandler(i)}}><BsStar/></Button>);
+        }
+    }
+
+    return stars;
 }
 export{FilmForm}

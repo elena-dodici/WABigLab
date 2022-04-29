@@ -38,7 +38,7 @@ function FilmTable(props) {
             
             {
               
-              props.films.map((f) => <FilmRow film={f} key={f.title} changeFav ={props.changeFav} deleteFilm={props.deleteFilm} setShowForm={setShowForm} setEditableFilm={setEditableFilm}/>)
+              props.films.map((f) => <FilmRow film={f} key={f.title} changeFav ={props.changeFav} deleteFilm={props.deleteFilm} setShowForm={setShowForm} setEditableFilm={setEditableFilm} editableFilm={editableFilm}/>)
               //在这里filter！
             }
           </tbody>
@@ -56,17 +56,18 @@ function FilmRow(props){
         
         <tr>
           <FilmActions film={props.film} deleteFilm={props.deleteFilm} setShowForm={props.setShowForm} setEditableFilm={props.setEditableFilm}  />
-          <FilmData film={props.film} changeFav={props.changeFav} />
-          
+          <FilmData key={props.editableFilm?props.editableFilm.title+props.editableFilm.favorite:'0'} film={props.film} changeFav={props.changeFav} />
+          {/* key不同则会重新生成这个component，否则state不会更新 */}
         </tr>
     );
 }
 function FilmData(props){
   // 声明一个叫 "mychecked" 的 state 变量
   
-  let [mychecked,setChecked] = useState(props.film.favorite);
-  console.log('2',props.film.favorite)
-  console.log('3',mychecked);
+  const [mychecked,setChecked] = useState(props.film.favorite);//只会初始化1次，第二次不会重新初始化了，所以会导致mychecked值和props.film.favorite不同
+  // console.log('2',props.film.favorite) //为啥这一行和下一行值不一样？？？？？？？？？？？？？？
+  // console.log('3',mychecked);
+  
   const stars= [];
   for(let i=0;i<props.film.rating;++i){
     stars.push(<BsStarFill key={i+'f'}/>);
