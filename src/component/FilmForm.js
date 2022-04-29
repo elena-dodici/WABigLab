@@ -15,14 +15,14 @@ function FilmForm(props){
         let stararr= [];
         if(props.film.rating ===undefined){
             for(let i=0;i<5;++i){
-                stararr.push(<Button key={i} id={i} onClick={()=>{clickHandler(i)}}><BsStar /></Button>);
+                stararr.push(<Button key={i} id={i} variant="light" onClick={()=>{clickHandler(i)}}><BsStar /></Button>);
             }
         }else{
             for(let i=0;i<props.film.rating;++i){
-                stararr.push(<Button key={i+'f'} id={i} onClick={()=>{clickHandler(i)}}><BsStarFill/></Button>);
+                stararr.push(<Button key={i+'f'} id={i} variant="light" onClick={()=>{clickHandler(i)}}><BsStarFill/></Button>);
             }
             for(let i=props.film.rating;i<5;++i){
-                stararr.push(<Button key={i+'b'} id={i} onClick={()=>{clickHandler(i)}}><BsStar/></Button>);
+                stararr.push(<Button key={i+'b'} id={i} variant="light" onClick={()=>{clickHandler(i)}}><BsStar/></Button>);
             }
         }
     
@@ -34,9 +34,9 @@ function FilmForm(props){
             // let stararr= [];
             return stars.map((s,idx)=>{
                 if(idx<=id)
-                    return <Button key={idx+'f'} id={idx} onClick={()=>{clickHandler(idx)}}><BsStarFill/></Button>
+                    return <Button key={idx+'f'} id={idx} variant="light" onClick={()=>{clickHandler(idx)}}><BsStarFill/></Button>
                 else
-                    return <Button key={idx+'b'} id={idx} onClick={()=>{clickHandler(idx)}}><BsStar/></Button> 
+                    return <Button key={idx+'b'} id={idx} variant="light" onClick={()=>{clickHandler(idx)}}><BsStar/></Button> 
             })
             // return stararr;
         })
